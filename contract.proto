@@ -1,0 +1,21 @@
+syntax = "proto3";
+package services;
+
+option go_package=".;grpc_contract";
+
+import "proto/account.proto";
+import "googleapis/google/api/annotations.proto";
+
+service File {
+  rpc SignUp(account.SignUpRequest) returns (account.SignUpResponse) {
+    option (google.api.http) = {
+      post: "/api/Authentication/SignUp"
+      body: "*"
+    };
+  }
+  rpc GetAccountInfo(account.GetAccountInfoRequest) returns (account.GetAccountInfoResponse) {
+    option (google.api.http) = {
+      get: "/api/Accounts/Me"
+    };
+  }
+}
